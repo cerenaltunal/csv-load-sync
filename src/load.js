@@ -40,7 +40,7 @@ function load(filename) {
 
 function getColumns(line) {
   check.verify.string(line, 'missing header line');
-  var columns = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)|(\b\b)(?!$)/g);
+  var columns = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
   console.assert(columns.length > 1, 'invalid columns ' +
     JSON.stringify(columns) + ' from line ' + line);
   columns = stripQuotes(columns);
